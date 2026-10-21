@@ -3,6 +3,9 @@
 
 using namespace geode::prelude;
 
+// Extends the time window in which a click / release is registered.
+// Window of 1 = vanilla behaviour. Raise it to 8, 10, etc. for more leeway.
+
 class $modify(FrameWindowLayer, GJBaseGameLayer) {
 	struct Fields {
 		int clickLeft[2] = {0, 0};
@@ -36,8 +39,8 @@ class $modify(FrameWindowLayer, GJBaseGameLayer) {
 		GJBaseGameLayer::handleButton(down, button, isPlayer1);
 	}
 
-	void processCommands(float dt) {
-		if (enabled()) {
+	void processCommands(float dt, bool isHalfTick, bool isLastTick) {
+		if (enabled() && isLastTick) {
 			auto f = m_fields.self();
 			f->resending = true;
 			for (int i = 0; i < 2; i++) {
@@ -53,6 +56,6 @@ class $modify(FrameWindowLayer, GJBaseGameLayer) {
 			}
 			f->resending = false;
 		}
-		GJBaseGameLayer::processCommands(dt);
+		GJBaseGameLayer::processCommands(dt, isHalfTick, isLastTick);
 	}
 };
