@@ -18,11 +18,15 @@ jobs:
     runs-on: ${{ matrix.config.os }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install LLVM 19
+        shell: pwsh
+        run: choco install llvm --version=19.1.7 --allow-downgrade -y
+
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
           combine: true
-          sdk: nightly
 
   package:
     name: Package builds
