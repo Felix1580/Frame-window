@@ -3,30 +3,30 @@
 	"gd": { "win": "*", "android": "*", "mac": "*", "ios": "*" },
 	"id": "felix1850.frame-window",
 	"name": "Frame Window",
-	"version": "v1.0.0",
+	"version": "v1.2.0",
 	"developer": "felix1850",
-	"description": "Widen the click and release frame window with a simple settings UI.",
+	"description": "Click buffering and a minimum hold length, with a simple settings UI.",
 	"settings": {
 		"enabled": {
 			"type": "bool",
 			"name": "Enabled",
-			"description": "Turn the extended frame windows on or off.",
+			"description": "Turn the mod on or off.",
 			"default": true
 		},
 		"click-window": {
 			"type": "int",
 			"name": "Click Window (frames)",
-			"description": "1 = vanilla. Set 8, 10, etc. for more leeway.",
+			"description": "How many frames after a click the click keeps counting. 1 = vanilla.",
 			"default": 4,
 			"min": 1,
 			"max": 30,
 			"control": { "slider": true, "input": true }
 		},
-		"release-window": {
+		"min-hold": {
 			"type": "int",
-			"name": "Release Window (frames)",
-			"description": "1 = vanilla. Set 8, 10, etc. for more leeway.",
-			"default": 4,
+			"name": "Minimum Hold (frames)",
+			"description": "Every hold lasts at least this many frames. Early releases are delayed. 1 = vanilla.",
+			"default": 5,
 			"min": 1,
 			"max": 30,
 			"control": { "slider": true, "input": true }
